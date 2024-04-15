@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  Account       Account[]
+  team          Team?
+}
+
+model Player {
+  id     String  @id @default(auto()) @map("_id") @db.ObjectId
+  name   String
+  jersey Int
+  type   String
+  photo  String?
+
+  teamIDs String[] @db.ObjectId
+  teams   Team[]   @relation(fields: [teamIDs], references: [id])
+}
+
+model Team {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  userId String @unique @db.ObjectId
+  User   User   @relation(fields: [userId], references: [id])
+
+  playerIDs String[] @db.ObjectId
+  players   Player[] @relation(fields: [playerIDs], references: [id])
+}
+
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @map("user_id") @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
