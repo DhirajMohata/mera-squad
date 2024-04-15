@@ -2,7 +2,6 @@ import PlayersTable from "@/components/players/players-table"
 import { LoadingText } from "@/components/site/loaders"
 import Container from "@/components/ui/container"
 import prisma from "@/lib/db"
-import { Player } from "@prisma/client"
 import { Suspense } from "react"
 
 export default async function Home() {
@@ -22,16 +21,14 @@ export default async function Home() {
     ]
   })
 
-  const playerStats = playersData.map(
-    (item: Player & { _count: { teams: number } }) => ({
-      id: item.id,
-      name: item.name,
-      jersey: item.jersey,
-      type: item.type,
-      photo: item.photo,
-      vote: item._count.teams
-    })
-  )
+  const playerStats = playersData.map((item) => ({
+    id: item.id,
+    name: item.name,
+    jersey: item.jersey,
+    type: item.type,
+    photo: item.photo,
+    vote: item._count.teams
+  }))
 
   return (
     <Container>
