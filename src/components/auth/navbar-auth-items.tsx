@@ -7,7 +7,8 @@ import { Button } from "../ui/button"
 import UserDropdown from "./user-dropdown"
 
 export default function NavbarAuthItems() {
-  const { data: session } = useSession()
+  const { data: session, status } = useSession()
+  const isCheckingAuthStatus = status === "loading"
 
   return session && session.user ? (
     <div className="flex items-center gap-2">
@@ -25,6 +26,7 @@ export default function NavbarAuthItems() {
       className="rounded-full font-bold"
       size={"lg"}
       onClick={() => signIn("google")}
+      disabled={isCheckingAuthStatus}
     >
       <FcGoogle className="mr-2 text-xl" />
       <span>Sign in with Google</span>

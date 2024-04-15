@@ -4,6 +4,8 @@ import Container from "@/components/ui/container"
 import prisma from "@/lib/db"
 import { Suspense } from "react"
 
+export const revalidate = 1000
+
 export default async function Home() {
   const playersData = await prisma.player.findMany({
     include: {

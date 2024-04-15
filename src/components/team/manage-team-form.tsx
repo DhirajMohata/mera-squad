@@ -102,9 +102,12 @@ export default function ManageTeamForm({
                 Click on above list if you want to remove player or simply tap
                 on player card.
               </p>
-              {selectedPlayers.length === 15 && (
-                <Button className="w-full">Update Team</Button>
-              )}
+              <Button
+                className="w-full"
+                disabled={selectedPlayers.length === 15}
+              >
+                Update Team
+              </Button>
             </>
           )}
         </aside>
