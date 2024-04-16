@@ -3,11 +3,15 @@
 import { manageTeam } from "@/actions/team"
 import { TeamPlayerType } from "@/types"
 import { useCallback, useEffect, useState } from "react"
-import { RxCross1 } from "react-icons/rx"
+import { RxCross1, RxLineHeight } from "react-icons/rx"
 import { toast } from "sonner"
 import { Button } from "../ui/button"
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger
+} from "../ui/collapsible"
 import { Input } from "../ui/input"
-import { ScrollArea } from "../ui/scroll-area"
 import SelectPlayerBtn from "./select-player-btn"
 
 export default function ManageTeamForm({
@@ -20,7 +24,7 @@ export default function ManageTeamForm({
   const [selectedPlayers, setSelectedPlayers] = useState<TeamPlayerType[]>(
     userTeamPlayers ?? []
   )
-  const [searchPlayer, setSearchPlayer] = useState("")
+  const [searchPlayer, setSearchPlayer] = useState("sdfsdfs")
   const [filteredPlayers, setFilteredPlayers] =
     useState<TeamPlayerType[]>(players)
 
@@ -72,89 +76,93 @@ export default function ManageTeamForm({
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <section className="flex gap-4">
-        <aside className="sticky top-0 h-full w-1/2 space-y-4 py-2.5 md:w-1/4">
-          <div className="flex h-[calc(100dvh_-_130px)] flex-col gap-4">
-            <h3 className="border-b pb-4 text-2xl font-semibold">
-              Your Players
+    <form onSubmit={handleSubmit} className="relative">
+      <div className="sticky top-0 z-50 bg-background p-5">
+        <Collapsible className="space-y-4">
+          <div className="flex  items-center justify-between gap-2 border-b pb-4">
+            <h3 className="text-2xl font-semibold">
+              <span>Players: </span>
+              {selectedPlayers.length}
             </h3>
 
-            {selectedPlayers.length === 0 ? (
-              <p className="text-muted-foreground">
-                Start picking your player by tapping on their card.
-              </p>
-            ) : (
-              <>
-                <p className="font-semibold text-muted-foreground">
-                  <span>Total: {selectedPlayers.length}</span>
-                </p>
-                <ScrollArea className="max-h-[50%]">
-                  <div className="flex flex-wrap gap-2">
-                    {selectedPlayers.map((item) => (
-                      <Button
-                        variant={"secondary"}
-                        size={"sm"}
-                        className="justify-start font-bold hover:bg-red-500 hover:text-red-50 hover:line-through"
-                        key={item.id}
-                        onClick={() => removePlayer(item)}
-                      >
-                        <p>{item.name}</p>
-                      </Button>
-                    ))}
-                  </div>
-                </ScrollArea>
+            <div className="flex items-center space-x-2">
+              {selectedPlayers.length !== 0 && (
+                <CollapsibleTrigger asChild>
+                  <Button variant={"outline"}>
+                    <RxLineHeight />
+                    <p className="my-auto ml-2 hidden md:block">Toggle list</p>
+                  </Button>
+                </CollapsibleTrigger>
+              )}
+              <Button disabled={selectedPlayers.length !== 15}>
+                {userTeamPlayers ? "Update Team" : "Create Team"}
+              </Button>
+            </div>
+          </div>
+
+          {selectedPlayers.length === 0 ? (
+            <p className="text-muted-foreground">
+              Start picking your player by tapping on their card.
+            </p>
+          ) : (
+            <>
+              <CollapsibleContent>
+                <div className="mb-4 flex flex-wrap gap-3">
+                  {selectedPlayers.map((item) => (
+                    <Button
+                      variant={"secondary"}
+                      size={"sm"}
+                      className="justify-start font-bold hover:bg-red-500 hover:text-red-50 hover:line-through"
+                      key={item.id}
+                      onClick={() => removePlayer(item)}
+                    >
+                      {item.name}
+                    </Button>
+                  ))}
+                </div>
                 <p className="text-sm text-muted-foreground">
                   Click on above list if you want to remove player or simply tap
                   on player card.
                 </p>
-                <Button
-                  className="w-full"
-                  disabled={selectedPlayers.length !== 15}
-                >
-                  Update Team
-                </Button>
-              </>
-            )}
-          </div>
-        </aside>
+              </CollapsibleContent>
+            </>
+          )}
+          <div className="relative">
+            <label htmlFor="search" className="sr-only">
+              Search Players
+            </label>
+            <Input
+              placeholder="Search by name, type, or jersey number"
+              value={searchPlayer}
+              onChange={(e) => setSearchPlayer(e.target.value)}
+            />
 
-        <div className="w-full space-y-4">
-          <div className="sticky top-0 z-20 bg-background py-2.5 ">
-            <div className="relative">
-              <label htmlFor="search" className="sr-only">
-                Search Players
-              </label>
-              <Input
-                placeholder="Search by name, type, or jersey number"
-                value={searchPlayer}
-                onChange={(e) => setSearchPlayer(e.target.value)}
-                className="h-12 text-lg"
-              />
+            {searchPlayer && (
+              <Button
+                variant={"link"}
+                size={"icon"}
+                className="absolute right-0 top-0 p-1"
+                onClick={() => setSearchPlayer("")}
+              >
+                <RxCross1 />
+              </Button>
+            )}ṇ
+          </div>
+        </Collapsible>
+      </div>
 
-              {searchPlayer && (
-                <Button
-                  size={"icon"}
-                  className="absolute right-0 top-0 m-1"
-                  onClick={() => setSearchPlayer("")}
-                >
-                  <RxCross1 />
-                </Button>
-              )}
-            </div>
-          </div>
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-4">
-            {filteredPlayers.map((item) => (
-              <SelectPlayerBtn
-                key={item.id}
-                player={item}
-                selectPlayer={onSelectPlayer}
-                selectedPlayers={selectedPlayers}
-              />
-            ))}
-          </div>
+      <div className="w-full space-y-4 p-5">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          {filteredPlayers.map((item) => (
+            <SelectPlayerBtn
+              key={item.id}
+              player={item}
+              selectPlayer={onSelectPlayer}
+              selectedPlayers={selectedPlayers}
+            />
+          ))}
         </div>
-      </section>
+      </div>
     </form>
   )
 }

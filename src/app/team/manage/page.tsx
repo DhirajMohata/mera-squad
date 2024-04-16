@@ -1,6 +1,5 @@
 import { LoadingText } from "@/components/site/loaders"
 import ManageTeamForm from "@/components/team/manage-team-form"
-import Container from "@/components/ui/container"
 import { authOptions } from "@/lib/auth-option"
 import prisma from "@/lib/db"
 import { getServerSession } from "next-auth"
@@ -42,8 +41,12 @@ export default async function CreateTeam() {
   })
 
   return (
-    <Container className="space-y-10">
-      <h3 className="text-center text-3xl font-semibold">Pick your Players</h3>
+    <div className="mx-auto max-w-[1400px] space-y-10">
+      <div className="space-y-10 px-5">
+        <h3 className="text-3xl font-semibold lg:text-center">
+          Pick your Players
+        </h3>
+      </div>
 
       <Suspense fallback={<LoadingText />}>
         <ManageTeamForm
@@ -51,6 +54,6 @@ export default async function CreateTeam() {
           userTeamPlayers={userTeamPlayers?.players}
         />
       </Suspense>
-    </Container>
+    </div>
   )
 }

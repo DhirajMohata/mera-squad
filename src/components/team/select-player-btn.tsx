@@ -2,13 +2,7 @@
 
 import { cn } from "@/lib/utils"
 import { TeamPlayerType } from "@/types"
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle
-} from "../ui/card"
+import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card"
 
 export default function SelectPlayerBtn({
   player,
@@ -33,19 +27,17 @@ export default function SelectPlayerBtn({
     >
       <Card
         className={cn(
-          "flex h-full flex-col items-center justify-center border-2 border-background text-center transition hover:border-muted-foreground",
+          "relative h-52 gap-0 border-2 border-background text-center transition hover:border-muted-foreground",
           selectedPlayerIdx !== -1 && "border-2 border-primary"
         )}
       >
-        <CardHeader>
+        <CardHeader className="p-3 py-4 text-start md:p-6 ">
           <CardTitle>{name}</CardTitle>
+          <CardDescription className="font-semibold">{type}</CardDescription>
         </CardHeader>
-        <CardContent>
-          <p className="text-6xl font-semibold">{jersey}</p>
-        </CardContent>
-        <CardFooter>
-          <p className="text-xl">{type}</p>
-        </CardFooter>
+        <p className="absolute bottom-0 right-2 text-8xl font-semibold text-primary/40 md:text-9xl">
+          {jersey}
+        </p>
       </Card>
       {selectedPlayerIdx !== -1 && <TickIcon index={selectedPlayerIdx} />}
     </button>
@@ -55,7 +47,7 @@ export default function SelectPlayerBtn({
 function TickIcon({ index }: { index: number }) {
   return (
     <div className="absolute -right-4 -top-2 z-10">
-      <div className="w-fit rounded-full font-bold bg-primary p-1 px-3 text-sm text-white">
+      <div className="w-fit rounded-full bg-primary p-1 px-3 text-sm font-bold text-white">
         {index + 1}
       </div>
     </div>
