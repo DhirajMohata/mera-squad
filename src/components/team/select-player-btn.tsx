@@ -1,8 +1,7 @@
 "use client"
 
-import { cn } from "@/lib/utils"
 import { TeamPlayerType } from "@/types"
-import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card"
+import PlayerCard from "../players/player-card"
 
 export default function SelectPlayerBtn({
   player,
@@ -13,11 +12,13 @@ export default function SelectPlayerBtn({
   selectedPlayers: TeamPlayerType[]
   selectPlayer: (player: TeamPlayerType) => void
 }) {
-  const { name, jersey, type } = player
-
   const selectedPlayerIdx = selectedPlayers.findIndex(
     (item) => item.id === player.id
   )
+
+  const selectPlayerCardStyle =
+    selectedPlayerIdx !== -1 &&
+    "border-2 border-primary hover:border-background"
 
   return (
     <button
@@ -25,20 +26,7 @@ export default function SelectPlayerBtn({
       className="relative h-full transition"
       onClick={() => selectPlayer(player)}
     >
-      <Card
-        className={cn(
-          "relative h-52 gap-0 border-2 border-background text-center transition hover:border-muted-foreground",
-          selectedPlayerIdx !== -1 && "border-2 border-primary"
-        )}
-      >
-        <CardHeader className="p-3 py-4 text-start md:p-6 ">
-          <CardTitle>{name}</CardTitle>
-          <CardDescription className="font-semibold">{type}</CardDescription>
-        </CardHeader>
-        <p className="absolute bottom-0 right-2 text-8xl font-semibold text-primary/40 md:text-9xl">
-          {jersey}
-        </p>
-      </Card>
+      <PlayerCard player={player} className={selectPlayerCardStyle} />
       {selectedPlayerIdx !== -1 && <TickIcon index={selectedPlayerIdx} />}
     </button>
   )

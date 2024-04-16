@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <Providers>
         <body className={urbanist.className}>
-          <div className="flex min-h-dvh flex-col gap-10">
+          <div className="flex min-h-dvh flex-col gap-10 selection:bg-primary/80 selection:text-primary-foreground">
             <Navbar />
             <main className="h-full grow">{children}</main>
             <Footer />

@@ -41,7 +41,7 @@ export default async function CreateTeam() {
   })
 
   return (
-    <div className="mx-auto max-w-[1400px] space-y-10">
+    <div className="mx-auto max-w-[1366px] space-y-10">
       <div className="space-y-10 px-5">
         <h3 className="text-3xl font-semibold lg:text-center">
           Pick your Players

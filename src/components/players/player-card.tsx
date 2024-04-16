@@ -1,23 +1,30 @@
-import { formatCmpctNumber } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 import { PlayerStatsType } from "@/types"
+import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card"
 
-export default function PlayerCard({ player }: { player: PlayerStatsType }) {
-  const { jersey, name, vote, type } = player
+export default function PlayerCard({
+  player,
+  className = ""
+}: {
+  player: PlayerStatsType
+  className?: string | boolean
+}) {
+  const { jersey, name, type } = player
 
   return (
-    <section className="flex w-full items-center gap-4 rounded-full bg-secondary p-5 text-secondary-foreground">
-      <p className="w-14 text-center text-3xl text-muted-foreground">
+    <Card
+      className={cn(
+        "relative h-52 gap-0 border-2 border-background text-center transition hover:ring-2 hover:ring-primary hover:ring-offset-4",
+        className
+      )}
+    >
+      <CardHeader className="p-3 py-4 text-start md:p-6 ">
+        <CardTitle>{name}</CardTitle>
+        <CardDescription className="font-semibold">{type}</CardDescription>
+      </CardHeader>
+      <p className="absolute bottom-0 right-2 text-8xl font-semibold text-primary/40 md:text-9xl">
         {jersey}
       </p>
-      <div className="grow ">
-        <h3 className="text-3xl font-semibold">{name}</h3>
-        <h6 className="text-lg font-medium text-muted-foreground">{type}</h6>
-      </div>
-      {vote !== undefined && (
-        <p className="min-w-14 text-center text-4xl">
-          {formatCmpctNumber(vote)}
-        </p>
-      )}
-    </section>
+    </Card>
   )
 }

@@ -90,7 +90,7 @@ export default function ManageTeamForm({
                 <CollapsibleTrigger asChild>
                   <Button variant={"outline"}>
                     <RxLineHeight />
-                    <p className="my-auto ml-2 hidden md:block">Toggle list</p>
+                    <p className="my-auto ml-2 hidden md:block">Your list</p>
                   </Button>
                 </CollapsibleTrigger>
               )}
@@ -134,7 +134,7 @@ export default function ManageTeamForm({
             <Input
               placeholder="Search by name, type, or jersey number"
               value={searchPlayer}
-              onChange={(e) => setSearchPlayer(e.target.value)}
+              onChange={(e) => setSearchPlayer(e.target.value.toLowerCase())}
             />
 
             {searchPlayer && (
