@@ -16,7 +16,7 @@ export default function Logo({
           size === "sm" && "text-xl"
         )}
       >
-        Logoipsum
+        Your15
       </h3>
     </Link>
   )

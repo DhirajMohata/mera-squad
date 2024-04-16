@@ -1,9 +1,9 @@
 "use client"
 
-import { signIn, useSession } from "next-auth/react"
+import { useSession } from "next-auth/react"
 import Link from "next/link"
-import { FcGoogle } from "react-icons/fc"
 import { Button } from "../ui/button"
+import GoogleLoginBtn from "./google-login-btn"
 import UserDropdown from "./user-dropdown"
 
 export default function NavbarAuthItems() {
@@ -21,15 +21,6 @@ export default function NavbarAuthItems() {
       />
     </div>
   ) : (
-    <Button
-      variant={"secondary"}
-      className="rounded-full font-bold"
-      size={"lg"}
-      onClick={() => signIn("google")}
-      disabled={isCheckingAuthStatus}
-    >
-      <FcGoogle className="mr-2 text-xl" />
-      <span>Sign in with Google</span>
-    </Button>
+    <GoogleLoginBtn disabled={isCheckingAuthStatus} />
   )
 }

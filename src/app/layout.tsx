@@ -24,7 +24,7 @@ export default function RootLayout({
         <body className={urbanist.className}>
           <div className="flex min-h-dvh flex-col gap-10">
             <Navbar />
-            <main className="grow">{children}</main>
+            <main className="h-full grow">{children}</main>
             <Footer />
           </div>
           <Toaster />

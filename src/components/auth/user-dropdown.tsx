@@ -50,6 +50,9 @@ export default function UserDropdown({
             <Link href={"/profile"}>Profile</Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
+            <Link href={"/"}>My Team</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
             <Link href={"/"}>Need help?</Link>
           </DropdownMenuItem>
 
