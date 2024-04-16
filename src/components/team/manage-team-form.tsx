@@ -7,6 +7,7 @@ import { RxCross1 } from "react-icons/rx"
 import { toast } from "sonner"
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
+import { ScrollArea } from "../ui/scroll-area"
 import SelectPlayerBtn from "./select-player-btn"
 
 export default function ManageTeamForm({
@@ -73,43 +74,49 @@ export default function ManageTeamForm({
   return (
     <form onSubmit={handleSubmit}>
       <section className="flex gap-4">
-        <aside className="sticky top-1 h-full w-1/2 space-y-4 py-2.5 md:w-1/4">
-          <h3 className="border-b pb-4 text-2xl font-semibold">Your Players</h3>
+        <aside className="sticky top-0 h-full w-1/2 space-y-4 py-2.5 md:w-1/4">
+          <div className="flex h-[calc(100dvh_-_130px)] flex-col gap-4">
+            <h3 className="border-b pb-4 text-2xl font-semibold">
+              Your Players
+            </h3>
 
-          {selectedPlayers.length === 0 ? (
-            <p className="text-muted-foreground">
-              Start picking your player by tapping on their card.
-            </p>
-          ) : (
-            <>
-              <p className="font-semibold text-muted-foreground">
-                <span>Total: {selectedPlayers.length}</span>
+            {selectedPlayers.length === 0 ? (
+              <p className="text-muted-foreground">
+                Start picking your player by tapping on their card.
               </p>
-              <div className="flex flex-wrap gap-2">
-                {selectedPlayers.map((item) => (
-                  <Button
-                    variant={"secondary"}
-                    size={"sm"}
-                    className="justify-start font-bold hover:bg-red-500 hover:text-red-50 hover:line-through"
-                    key={item.id}
-                    onClick={() => removePlayer(item)}
-                  >
-                    <p>{item.name}</p>
-                  </Button>
-                ))}
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Click on above list if you want to remove player or simply tap
-                on player card.
-              </p>
-              <Button
-                className="w-full"
-                disabled={selectedPlayers.length === 15}
-              >
-                Update Team
-              </Button>
-            </>
-          )}
+            ) : (
+              <>
+                <p className="font-semibold text-muted-foreground">
+                  <span>Total: {selectedPlayers.length}</span>
+                </p>
+                <ScrollArea className="max-h-[50%]">
+                  <div className="flex flex-wrap gap-2">
+                    {selectedPlayers.map((item) => (
+                      <Button
+                        variant={"secondary"}
+                        size={"sm"}
+                        className="justify-start font-bold hover:bg-red-500 hover:text-red-50 hover:line-through"
+                        key={item.id}
+                        onClick={() => removePlayer(item)}
+                      >
+                        <p>{item.name}</p>
+                      </Button>
+                    ))}
+                  </div>
+                </ScrollArea>
+                <p className="text-sm text-muted-foreground">
+                  Click on above list if you want to remove player or simply tap
+                  on player card.
+                </p>
+                <Button
+                  className="w-full"
+                  disabled={selectedPlayers.length !== 15}
+                >
+                  Update Team
+                </Button>
+              </>
+            )}
+          </div>
         </aside>
 
         <div className="w-full space-y-4">
