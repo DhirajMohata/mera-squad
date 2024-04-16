@@ -24,7 +24,7 @@ export default function ManageTeamForm({
   const [selectedPlayers, setSelectedPlayers] = useState<TeamPlayerType[]>(
     userTeamPlayers ?? []
   )
-  const [searchPlayer, setSearchPlayer] = useState("sdfsdfs")
+  const [searchPlayer, setSearchPlayer] = useState("")
   const [filteredPlayers, setFilteredPlayers] =
     useState<TeamPlayerType[]>(players)
 
@@ -79,7 +79,7 @@ export default function ManageTeamForm({
     <form onSubmit={handleSubmit} className="relative">
       <div className="sticky top-0 z-50 bg-background p-5">
         <Collapsible className="space-y-4">
-          <div className="flex  items-center justify-between gap-2 border-b pb-4">
+          <div className="flex  items-center justify-between gap-2">
             <h3 className="text-2xl font-semibold">
               <span>Players: </span>
               {selectedPlayers.length}
@@ -112,7 +112,7 @@ export default function ManageTeamForm({
                     <Button
                       variant={"secondary"}
                       size={"sm"}
-                      className="justify-start font-bold hover:bg-red-500 hover:text-red-50 hover:line-through"
+                      className="justify-start text-base font-bold hover:bg-red-500 hover:text-red-50 hover:line-through"
                       key={item.id}
                       onClick={() => removePlayer(item)}
                     >
@@ -121,8 +121,8 @@ export default function ManageTeamForm({
                   ))}
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Click on above list if you want to remove player or simply tap
-                  on player card.
+                  Click on player name if you want to remove player or simply
+                  tap on player card.
                 </p>
               </CollapsibleContent>
             </>
@@ -146,13 +146,13 @@ export default function ManageTeamForm({
               >
                 <RxCross1 />
               </Button>
-            )}ṇ
+            )}
           </div>
         </Collapsible>
       </div>
 
       <div className="w-full space-y-4 p-5">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
           {filteredPlayers.map((item) => (
             <SelectPlayerBtn
               key={item.id}

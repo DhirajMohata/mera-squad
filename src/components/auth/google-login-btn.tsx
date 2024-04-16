@@ -1,7 +1,6 @@
 "use client"
 
 import { signIn } from "next-auth/react"
-import { useSearchParams } from "next/navigation"
 import { FcGoogle } from "react-icons/fc"
 import { Button } from "../ui/button"
 
@@ -10,9 +9,6 @@ export default function GoogleLoginBtn({
 }: {
   disabled?: boolean
 }) {
-  const search = useSearchParams()
-  console.log()
-
   return (
     <Button
       variant={"secondary"}
@@ -20,7 +16,7 @@ export default function GoogleLoginBtn({
       size={"lg"}
       onClick={() =>
         signIn("google", {
-          callbackUrl: search.get("callbackUrl") ?? "/team/manage"
+          callbackUrl: "/team/manage"
         })
       }
       disabled={disabled}
