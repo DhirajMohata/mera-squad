@@ -17,9 +17,11 @@ import { Button } from "../ui/button"
 
 export default function UserDropdown({
   name,
+  username,
   userImage
 }: {
   name: string
+  username: string
   userImage: string
 }) {
   const fallbackInitial = useMemo(
@@ -33,39 +35,42 @@ export default function UserDropdown({
   )
 
   return (
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button className="gap-3 rounded-full py-3">
-            <p className="font-medium">{name}</p>
-            <Avatar>
-              <AvatarImage src={userImage} />
-              <AvatarFallback>{fallbackInitial}</AvatarFallback>
-            </Avatar>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <Link href={"/profile"}>Profile</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <Link href={"/"}>My Team</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <Link href={"/"}>Need help?</Link>
-          </DropdownMenuItem>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button className="gap-3 rounded-full py-6 hover:opacity-70">
+          <div className="flex flex-col items-end">
+            <p className="text-base font-medium">{name}</p>
+            <p className="text-xs">{`@${username}`}</p>
+          </div>
+          <Avatar>
+            <AvatarImage src={userImage} />
+            <AvatarFallback>{fallbackInitial}</AvatarFallback>
+          </Avatar>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem asChild>
+          <Link href={"/profile"}>Profile</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href={"/"}>My Team</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href={"/"}>Need help?</Link>
+        </DropdownMenuItem>
 
-          <DropdownMenuSeparator />
-          <Button
-            variant={"destructive"}
-            className="w-full gap-2 text-secondary"
-            onClick={() => signOut()}
-          >
-            <span>Logout</span>
-            <LogOutIcon size={15} />
-          </Button>
-        </DropdownMenuContent>
-      </DropdownMenu>
+        <DropdownMenuSeparator />
+        <Button
+          variant={"destructive"}
+          className="w-full gap-2 text-secondary"
+          onClick={() => signOut()}
+        >
+          <span>Logout</span>
+          <LogOutIcon size={15} />
+        </Button>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }

@@ -1,11 +1,22 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { User } from "@prisma/client"
 import { AuthOptions } from "next-auth"
+import { Adapter, AdapterUser } from "next-auth/adapters"
 import GoogleProvider from "next-auth/providers/google"
 import prisma from "./db"
 
+function CustomPrismaAdapter(p: typeof prisma) {
+  return {
+    ...PrismaAdapter(p),
+    createUser: (data: Omit<AdapterUser, "id">) => {
+      const username = data?.email.split("@")[0]
+      return p.user.create({ data: { ...data, username } })
+    }
+  }
+}
+
 export const authOptions: AuthOptions = {
-  adapter: PrismaAdapter(prisma),
+  adapter: CustomPrismaAdapter(prisma) as Adapter,
   providers: [
     GoogleProvider({
       clientId: process.env.AUTH_GOOGLE_ID as string,

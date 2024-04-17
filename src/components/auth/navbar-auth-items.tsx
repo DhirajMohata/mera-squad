@@ -17,6 +17,7 @@ export default function NavbarAuthItems() {
       </Button>
       <UserDropdown
         name={session.user.name || ""}
+        username={session.user.username || ""}
         userImage={session.user.image || ""}
       />
     </div>
