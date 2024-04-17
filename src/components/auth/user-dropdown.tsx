@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu"
 import { LogOutIcon } from "lucide-react"
-import { signOut } from "next-auth/react"
+import { signOut, useSession } from "next-auth/react"
 import Link from "next/link"
 import { useMemo } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
@@ -34,6 +34,8 @@ export default function UserDropdown({
     [name]
   )
 
+  const { data } = useSession()
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -55,7 +57,7 @@ export default function UserDropdown({
           <Link href={"/profile"}>Profile</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link href={"/"}>My Team</Link>
+          <Link href={"/team/" + data?.user.username}>My Team</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link href={"/"}>Need help?</Link>

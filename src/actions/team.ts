@@ -13,7 +13,7 @@ export const manageTeam = async (playerIDs: string[]) => {
   if (playerIDs.length !== 15) return
 
   const {
-    user: { id }
+    user: { id, username }
   } = session
 
   const connectQuery = playerIDs.map((item) => ({
@@ -40,5 +40,5 @@ export const manageTeam = async (playerIDs: string[]) => {
   })
 
   revalidatePath("/")
-  redirect("/team/" + team.id)
+  redirect("/team/" + username)
 }

@@ -42,10 +42,9 @@ export default async function CreateTeam() {
 
   return (
     <div className="mx-auto max-w-[1366px] space-y-10">
-      <div className="space-y-10 px-5">
-        <h3 className="text-3xl font-semibold lg:text-center">
-          Pick your Players
-        </h3>
+      <div className="space-y-2 px-5 lg:text-center">
+        <h3 className="text-3xl font-semibold ">Manage your Players</h3>
+        <p>Remove or add just by tapping on the player card.</p>
       </div>
 
       <Suspense fallback={<LoadingText />}>

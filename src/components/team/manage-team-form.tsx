@@ -2,9 +2,10 @@
 
 import { manageTeam } from "@/actions/team"
 import { TeamPlayerType } from "@/types"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useState, useTransition } from "react"
 import { RxCross1, RxLineHeight } from "react-icons/rx"
 import { toast } from "sonner"
+import { LoadingText } from "../site/loaders"
 import { Button } from "../ui/button"
 import {
   Collapsible,
@@ -27,6 +28,8 @@ export default function ManageTeamForm({
   const [searchPlayer, setSearchPlayer] = useState("")
   const [filteredPlayers, setFilteredPlayers] =
     useState<TeamPlayerType[]>(players)
+
+  const [isLoading, startTransition] = useTransition()
 
   const onSelectPlayer = (player: TeamPlayerType) => {
     setSelectedPlayers((prevState) => {
@@ -71,8 +74,10 @@ export default function ManageTeamForm({
     if (selectedPlayers.length !== 15 || selectedPlayers === userTeamPlayers)
       return
 
-    const playerIDs = selectedPlayers.map((item) => item.id)
-    manageTeam(playerIDs)
+    startTransition(() => {
+      const playerIDs = selectedPlayers.map((item) => item.id)
+      manageTeam(playerIDs)
+    })
   }
 
   return (
@@ -94,15 +99,24 @@ export default function ManageTeamForm({
                   </Button>
                 </CollapsibleTrigger>
               )}
-              <Button disabled={selectedPlayers.length !== 15}>
-                {userTeamPlayers ? "Update Team" : "Create Team"}
+              <Button disabled={selectedPlayers.length !== 15 || isLoading}>
+                {isLoading ? (
+                  <LoadingText
+                    text="Processing"
+                    className="text-primary-foreground"
+                  />
+                ) : userTeamPlayers ? (
+                  "Update Team"
+                ) : (
+                  "Create Team"
+                )}
               </Button>
             </div>
           </div>
 
           {selectedPlayers.length === 0 ? (
             <p className="text-muted-foreground">
-              Start picking your player by tapping on their card.
+              Don&apos;t wait too long! Pick you favourites first.
             </p>
           ) : (
             <>
@@ -120,10 +134,17 @@ export default function ManageTeamForm({
                     </Button>
                   ))}
                 </div>
-                <p className="text-sm text-muted-foreground">
-                  Click on player name if you want to remove player or simply
-                  tap on player card.
-                </p>
+                <div className="flex items-center justify-between gap-2 md:flex-row">
+                  <p className="max-w-xs text-sm text-muted-foreground">
+                    Click on player name to remove player.
+                  </p>
+                  <Button
+                    variant={"destructive"}
+                    onClick={() => setSelectedPlayers([])}
+                  >
+                    Clear List
+                  </Button>
+                </div>
               </CollapsibleContent>
             </>
           )}
