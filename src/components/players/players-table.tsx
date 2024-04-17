@@ -32,11 +32,15 @@ function PlayersSection({
       <h3 className="sticky left-0 top-0 z-10 bg-background px-5 py-2 text-3xl font-semibold md:text-center md:text-4xl">
         {type}
       </h3>
-      <div className="grid grid-cols-2 gap-3 px-5 md:grid-cols-3 lg:grid-cols-5 ">
-        {filteredPlayers.map((item) => (
-          <PlayerCard key={item.id} player={item} />
-        ))}
-      </div>
+      {filteredPlayers.length === 0 ? (
+        <p className="md:text-center">No players from this category.</p>
+      ) : (
+        <div className="grid grid-cols-2 gap-3 px-5 md:grid-cols-3 lg:grid-cols-5 ">
+          {filteredPlayers.map((item) => (
+            <PlayerCard key={item.id} player={item} />
+          ))}
+        </div>
+      )}
     </div>
   )
 }
