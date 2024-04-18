@@ -14,7 +14,7 @@ export default function PlayerCard({
   return (
     <Card
       className={cn(
-        "relative h-52 gap-0 border-2 border-background text-center transition hover:ring-2 hover:ring-primary hover:ring-offset-4",
+        "relative h-52 gap-0 border-2 border-background text-center transition hover:ring-2 hover:ring-primary hover:ring-offset-2",
         className
       )}
     >

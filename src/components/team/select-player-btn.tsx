@@ -1,6 +1,7 @@
 "use client"
 
 import { TeamPlayerType } from "@/types"
+import { TiTick } from "react-icons/ti"
 import PlayerCard from "../players/player-card"
 
 export default function SelectPlayerBtn({
@@ -23,20 +24,20 @@ export default function SelectPlayerBtn({
   return (
     <button
       type="button"
-      className="relative h-full transition"
+      className="group relative h-full transition"
       onClick={() => selectPlayer(player)}
     >
       <PlayerCard player={player} className={selectPlayerCardStyle} />
-      {selectedPlayerIdx !== -1 && <TickIcon index={selectedPlayerIdx} />}
+      {selectedPlayerIdx !== -1 && <TickIcon />}
     </button>
   )
 }
 
-function TickIcon({ index }: { index: number }) {
+function TickIcon() {
   return (
-    <div className="absolute -right-4 -top-2 z-10">
-      <div className="w-fit rounded-full bg-primary p-1 px-3 text-sm font-bold text-white">
-        {index + 1}
+    <div className="absolute -right-2 -top-2 z-10 transition ">
+      <div className="w-fit rounded-full bg-primary p-1 text-sm font-bold text-white">
+        <TiTick />
       </div>
     </div>
   )
