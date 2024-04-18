@@ -16,7 +16,7 @@ export default function Logo({
           size === "sm" && "text-xl"
         )}
       >
-        Your15
+        मेरा Squad
       </h3>
     </Link>
   )
