@@ -29,7 +29,7 @@ function PlayersSection({
 
   return (
     <div className="space-y-2">
-      <h3 className="sticky left-0 top-0 z-10 bg-background px-5 py-2 text-3xl font-semibold md:text-center md:text-4xl">
+      <h3 className="sticky left-0 top-0 z-10 bg-background px-5 py-2 text-3xl font-semibold md:relative md:text-center md:text-4xl">
         {type}
       </h3>
       {filteredPlayers.length === 0 ? (

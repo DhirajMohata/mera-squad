@@ -10,13 +10,14 @@ export default function Logo({
     <Link href={"/"} className="block">
       <h3
         className={twMerge(
-          "font-semibold",
-          size === "default" && "text-3xl",
+          "group font-semibold",
+          size === "default" && "text-4xl",
           size === "lg" && "text-5xl",
-          size === "sm" && "text-xl"
+          size === "sm" && "text-2xl"
         )}
       >
-        मेरा Squad
+        मेरा
+        <span className="ml-1 group-hover:underline">Squad</span>
       </h3>
     </Link>
   )
