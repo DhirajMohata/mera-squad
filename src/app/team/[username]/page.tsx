@@ -37,7 +37,9 @@ async function getTeamData(username: string) {
 
     return team
   } catch (error) {
-    throw new Error(`You took a bouncer here. Duck and share your team!😊`)
+    throw new Error(
+      `You took a bouncer here. No ${username} exists, just duck and share your team instead!😊`
+    )
   }
 }
 
@@ -55,7 +57,16 @@ export default async function Team({
   }
 
   return (
-    <Container>
+    <Container className="my-8 space-y-20">
+      <div className="flex flex-col items-center justify-center text-center text-3xl md:flex-row md:text-4xl">
+        <h3>You are viewing</h3>
+        <h3>
+          <span className="ml-2 font-semibold text-primary underline decoration-primary/70">
+            @{params.username}
+          </span>
+          <span>&apos;s team.</span>
+        </h3>
+      </div>
       <Suspense fallback={<LoadingText text="Fetching Team Players" />}>
         <PlayersTable playerStats={team.players} />
       </Suspense>

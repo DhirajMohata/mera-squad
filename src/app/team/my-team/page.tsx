@@ -29,7 +29,7 @@ export default async function MyTeam() {
   })
 
   return (
-    <Container>
+    <Container className="my-10">
       <Suspense fallback={<LoadingText text="Fetching Your Team Players" />}>
         {!team || !team?.players ? (
           <>

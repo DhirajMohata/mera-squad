@@ -11,7 +11,7 @@ export default function NavbarAuthItems() {
   const isCheckingAuthStatus = status === "loading"
 
   return session && session.user ? (
-    <div className="flex items-center gap-2">
+    <div className="flex w-full md:w-fit items-center justify-between gap-2">
       <Button variant={"secondary"} className="rounded-full" asChild>
         <Link href={"/team/manage"}>Manage your team</Link>
       </Button>

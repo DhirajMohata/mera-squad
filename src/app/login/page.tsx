@@ -17,10 +17,10 @@ export default function Login() {
 
   return (
     <Container className="my-auto">
-      <Card className="mx-auto max-w-lg py-20 text-center">
+      <Card className="p-10 text-center lg:p-20">
         <CardHeader>
           <CardTitle>Wanakkam!</CardTitle>
-          <CardDescription>Share your top 15 with world.</CardDescription>
+          <CardDescription>Share your squad with world.</CardDescription>
         </CardHeader>
 
         <CardContent>
