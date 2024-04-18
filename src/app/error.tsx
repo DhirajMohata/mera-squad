@@ -16,7 +16,7 @@ export default function Error({
   const { data: session } = useSession()
 
   return (
-    <Container className="flex flex-col items-center justify-center space-y-5">
+    <Container className="my-auto flex flex-col items-center justify-center space-y-5">
       <div className="space-y-3 text-center">
         <h2 className="text-3xl font-semibold text-primary">Oyeeeeee!</h2>
         <p className="max-w-lg text-lg text-muted-foreground">

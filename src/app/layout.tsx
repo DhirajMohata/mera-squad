@@ -24,9 +24,7 @@ export default function RootLayout({
         <body className={urbanist.className}>
           <div className="flex min-h-dvh flex-col gap-10 selection:bg-primary/80 selection:text-primary-foreground">
             <Navbar />
-            <main className="flex h-full grow flex-col justify-center">
-              {children}
-            </main>
+            <main className="flex flex-1 flex-col">{children}</main>
             <Footer />
           </div>
           <Toaster />

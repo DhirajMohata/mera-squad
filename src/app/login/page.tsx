@@ -16,8 +16,8 @@ export default function Login() {
   const isCheckingAuthStatus = status === "loading"
 
   return (
-    <Container>
-      <Card className="mx-auto max-w-lg text-center">
+    <Container className="my-auto">
+      <Card className="mx-auto max-w-lg py-20 text-center">
         <CardHeader>
           <CardTitle>Wanakkam!</CardTitle>
           <CardDescription>Share your top 15 with world.</CardDescription>
