@@ -1,5 +1,6 @@
 import PlayersTable from "@/components/players/players-table"
 import { LoadingText } from "@/components/site/loaders"
+import Container from "@/components/ui/container"
 import prisma from "@/lib/db"
 import { Suspense } from "react"
 
@@ -54,10 +55,10 @@ export default async function Team({
   }
 
   return (
-    <div className="mx-auto max-w-[1366px]">
+    <Container>
       <Suspense fallback={<LoadingText text="Fetching Team Players" />}>
         <PlayersTable playerStats={team.players} />
       </Suspense>
-    </div>
+    </Container>
   )
 }

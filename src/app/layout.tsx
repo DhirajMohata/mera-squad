@@ -9,8 +9,9 @@ import "./globals.css"
 const urbanist = Urbanist({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Top 15",
-  description: "Built with NextJS"
+  title: "मेरा Squad",
+  description:
+    "Pick your top 15 players for the upcoming T20 Men's World Cup and share your squad with everyone."
 }
 
 export default function RootLayout({

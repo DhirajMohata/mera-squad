@@ -1,5 +1,6 @@
 import PlayersTable from "@/components/players/players-table"
 import { LoadingText } from "@/components/site/loaders"
+import Container from "@/components/ui/container"
 import { authOptions } from "@/lib/auth-option"
 import prisma from "@/lib/db"
 import { getServerSession } from "next-auth"
@@ -28,7 +29,7 @@ export default async function MyTeam() {
   })
 
   return (
-    <div className="mx-auto max-w-[1366px]">
+    <Container>
       <Suspense fallback={<LoadingText text="Fetching Your Team Players" />}>
         {!team || !team?.players ? (
           <>
@@ -38,6 +39,6 @@ export default async function MyTeam() {
           <PlayersTable playerStats={team.players} />
         )}
       </Suspense>
-    </div>
+    </Container>
   )
 }
