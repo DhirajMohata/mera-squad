@@ -24,7 +24,7 @@ export default function SelectPlayerBtn({
   return (
     <button
       type="button"
-      className="group relative h-full transition"
+      className="group relative h-fit transition"
       onClick={() => selectPlayer(player)}
     >
       <PlayerCard player={player} className={selectPlayerCardStyle} />
