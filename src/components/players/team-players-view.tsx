@@ -1,9 +1,8 @@
+import { playerTypes } from "@/lib/constants"
 import { PlayerStatsType } from "@/types"
 import PlayerCard from "./player-card"
 
-const playerTypes = ["Batter", "Wicket Keeper", "All Rounder", "Bowler"]
-
-export default function PlayersTable({
+export default function PlayersView({
   playerStats = []
 }: {
   playerStats: PlayerStatsType[]

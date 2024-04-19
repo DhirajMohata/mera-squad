@@ -10,6 +10,7 @@ export const manageTeam = async (playerIDs: string[]) => {
   const session = await getServerSession(authOptions)
   if (!session) return redirect("/")
   // TODO : validate if the array contains the valid object id
+  // TODO : add try catch for custom errors
   if (playerIDs.length !== 15) return
 
   const {
@@ -40,5 +41,5 @@ export const manageTeam = async (playerIDs: string[]) => {
   })
 
   revalidatePath("/")
-  redirect("/team/" + username)
+  redirect("/team/my-team")
 }

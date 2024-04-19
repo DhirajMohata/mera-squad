@@ -4,7 +4,7 @@ import Logo from "./logo"
 
 export default function Footer() {
   return (
-    <footer className="bg-primary p-5 md:py-7 text-primary-foreground">
+    <footer className="bg-primary p-5 text-primary-foreground md:py-7">
       <Container className="mb:border-b mb:pb-5 flex flex-col items-center gap-3 md:flex-row md:items-end md:justify-between">
         <div className="text-center md:text-start">
           <Logo size="sm" />
@@ -29,7 +29,12 @@ export default function Footer() {
               manage
             </Link>
             <span>/</span>
-            <Link href={"/"} className="font-medium hover:underline">
+            <Link
+              href={
+                "mailto:jerrycodes29@gmail.com?subject=Query%20related%20to%20मेरा%20Squad%20Application"
+              }
+              className="font-medium hover:underline"
+            >
               support
             </Link>
           </ul>

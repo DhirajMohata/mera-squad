@@ -1,4 +1,4 @@
-import PlayersTable from "@/components/players/players-table"
+import PlayersView from "@/components/players/team-players-view"
 import { LoadingText } from "@/components/site/loaders"
 import Container from "@/components/ui/container"
 import prisma from "@/lib/db"
@@ -68,7 +68,7 @@ export default async function Team({
         </h3>
       </div>
       <Suspense fallback={<LoadingText text="Fetching Team Players" />}>
-        <PlayersTable playerStats={team.players} />
+        <PlayersView playerStats={team.players} />
       </Suspense>
     </Container>
   )

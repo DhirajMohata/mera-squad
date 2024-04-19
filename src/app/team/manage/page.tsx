@@ -42,7 +42,7 @@ export default async function CreateTeam() {
   })
 
   return (
-    <Container className="space-y-10">
+    <Container className="space-y-10 w-full">
       <div className="space-y-2 px-5 lg:text-center">
         <h3 className="text-3xl font-semibold ">Manage your Players</h3>
         <p>Remove or add just by tapping on the player card.</p>
