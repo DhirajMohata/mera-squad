@@ -25,7 +25,7 @@ export default function Error({
       </div>
 
       <Button variant={"default"} size={"lg"} className="rounded-full" asChild>
-        <Link href={session && session.user ? "/team/manage" : "/login"}>
+        <Link href={session && session.user ? "/team/my-team" : "/login"}>
           <span>Meanwhile share your Team</span>
           <MdArrowOutward size={20} />
         </Link>
