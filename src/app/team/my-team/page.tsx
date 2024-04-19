@@ -57,6 +57,11 @@ export default async function MyTeam() {
       <div className="flex flex-col items-center justify-center gap-5 text-center">
         <h3 className="text-3xl md:text-4xl">Your selected squad members</h3>
         <ShareTeamButton username={session.user.username} />
+        <Button variant={"link"} size={"lg"} className="rounded-full" asChild>
+          <Link href="/profile">
+            <span>Change your Public Username if you want?</span>
+          </Link>
+        </Button>
       </div>
 
       <Suspense fallback={<LoadingText text="Fetching Your Team Players" />}>
