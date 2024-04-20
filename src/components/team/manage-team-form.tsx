@@ -83,7 +83,7 @@ export default function ManageTeamForm({
   return (
     <form onSubmit={handleSubmit} className="relative w-full">
       <div className="sticky top-0 z-50 bg-background p-5">
-        <Collapsible className="space-y-4" defaultOpen>
+        <Collapsible className="space-y-4" defaultOpen={!!userTeamPlayers}>
           <div className="flex  items-center justify-between gap-2">
             <h3 className="text-2xl font-semibold">
               <span>Players: </span>

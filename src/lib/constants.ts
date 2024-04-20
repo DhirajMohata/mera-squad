@@ -1,1 +1,1 @@
-export const playerTypes = ["Batter", "Wicket Keeper", "All Rounder", "Bowler"]
+export const playerTypes = ["batter", "wicket keeper", "all rounder", "bowler"]

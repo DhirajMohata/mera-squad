@@ -20,7 +20,7 @@ export default function PlayerCard({
     >
       <CardHeader className="p-3 py-4 text-start md:p-6 ">
         <CardTitle>{name}</CardTitle>
-        <CardDescription className="font-semibold">{type}</CardDescription>
+        <CardDescription className="font-semibold capitalize">{type}</CardDescription>
       </CardHeader>
       <p className="absolute bottom-0 right-2 text-8xl font-semibold text-primary/40 md:text-9xl">
         {jersey}

@@ -30,8 +30,8 @@ export default function TeamTable({
             <TableCell className="w-[50px] text-2xl font-medium md:w-[100px] md:text-center">
               {item.jersey}
             </TableCell>
-            <TableCell className="text-lg">{item.name}</TableCell>
-            <TableCell className="text-right">{item.type}</TableCell>
+            <TableCell className="text-lg capitalize">{item.name}</TableCell>
+            <TableCell className="text-right capitalize">{item.type}</TableCell>
           </TableRow>
         ))}
       </TableBody>
