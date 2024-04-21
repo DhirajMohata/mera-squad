@@ -2,6 +2,7 @@ import Footer from "@/components/site/footer"
 import Navbar from "@/components/site/navbar"
 import Providers from "@/components/ui/providers"
 import { Toaster } from "@/components/ui/sonner"
+import { Analytics } from "@vercel/analytics/react"
 import type { Metadata } from "next"
 import { Urbanist } from "next/font/google"
 import "./globals.css"
@@ -29,6 +30,7 @@ export default function RootLayout({
             <Footer />
           </div>
           <Toaster />
+          <Analytics />
         </body>
       </Providers>
     </html>
