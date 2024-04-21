@@ -9,11 +9,11 @@ import {
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu"
 import { LogOutIcon } from "lucide-react"
-import { signOut, useSession } from "next-auth/react"
+import { signOut } from "next-auth/react"
 import Link from "next/link"
-import { useMemo } from "react"
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
+import UserAvatar from "../site/user-avatar"
 import { Button } from "../ui/button"
+import LogoutBtn from "./logout-btn"
 
 export default function UserDropdown({
   name,
@@ -24,30 +24,11 @@ export default function UserDropdown({
   username: string
   userImage: string
 }) {
-  const fallbackInitial = useMemo(
-    () =>
-      name
-        .split(" ")
-        .map((item) => item.charAt(0))
-        .join("")
-        .toUpperCase(),
-    [name]
-  )
-
-  const { data } = useSession()
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button className="gap-3 rounded-full py-6 hover:opacity-70">
-          <div className="flex flex-col items-end">
-            <p className="text-base font-medium">{name}</p>
-            <p className="text-xs">{`@${username}`}</p>
-          </div>
-          <Avatar>
-            <AvatarImage src={userImage} />
-            <AvatarFallback>{fallbackInitial}</AvatarFallback>
-          </Avatar>
+          <UserAvatar name={name} userImage={userImage} username={username} />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
@@ -64,14 +45,7 @@ export default function UserDropdown({
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
-        <Button
-          variant={"destructive"}
-          className="w-full gap-2 text-secondary"
-          onClick={() => signOut()}
-        >
-          <span>Logout</span>
-          <LogOutIcon size={15} />
-        </Button>
+        <LogoutBtn/>
       </DropdownMenuContent>
     </DropdownMenu>
   )

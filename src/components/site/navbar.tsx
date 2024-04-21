@@ -1,6 +1,7 @@
 import NavbarAuthItems from "../auth/navbar-auth-items"
 import Container from "../ui/container"
 import Logo from "./logo"
+import MobileNavbar from "./mobile-navbar"
 
 export default function Navbar() {
   return (
@@ -9,6 +10,7 @@ export default function Navbar() {
         <Logo />
 
         <NavbarAuthItems />
+        <MobileNavbar/>
       </Container>
     </header>
   )
